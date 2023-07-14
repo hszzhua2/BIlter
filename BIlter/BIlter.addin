@@ -1,0 +1,10 @@
+﻿<RevitAddIns>
+    <AddIn Type="Application">
+        <Name>IPPR医疗一院建筑所_BIlter</Name>
+        <Assembly>BIlter/BIlter.dll</Assembly>
+        <AddInId>3F3DFFAB-13EA-4B82-849D-6545DFF7A1BF</AddInId>
+        <FullClassName>BIlter.Application</FullClassName>
+        <VendorId>IPPR</VendorId>
+        <VendorDescription>zefengzhuang@outlook.com</VendorDescription>
+    </AddIn>
+</RevitAddIns>
