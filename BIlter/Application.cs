@@ -25,6 +25,11 @@ namespace BIlter
             var showButton = panel.AddPushButton<Command>("Execute");
             showButton.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
             showButton.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
+
+
+            var winButton = panel.AddPushButton<RelayCommand>("SimpleMVVM");
+            winButton.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
+            winButton.SetLargeImage("/BIlter;component/Resources/Icons/Windows32.png");
         }
 
         private static void CreateLogger()
