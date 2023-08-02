@@ -94,7 +94,7 @@ namespace BIlter.ViewModels
                 if (Material.AppearanceColor != AppearanceColor)
                     Material.AppearanceColor = AppearanceColor;
                 MessengerInstance.Send(Material, "InsertMaterial");
-                /*_message.Execute(Material);*/
+                _message.Execute(Material);
 
                 Messenger.Default.Send(true, Contacts.Tokens.MaterialsDialog);
             });

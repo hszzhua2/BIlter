@@ -4,9 +4,49 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BIlter.Views"
+        xmlns:entity="clr-namespace:BIlter.Entity"
+        xmlns:converter="clr-namespace:BIlter.Converter"
         mc:Ignorable="d"
-        Title="MaterialDialog" Height="450" Width="800">
+        Title="MaterialDialog" 
+        Height="230" Width="250"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <converter:ColorConverter x:Key="colorConverter"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,10,10,0">
+            <TextBlock FontWeight="Black" Text="名称" />
+            <TextBox Margin="0,5" Text="{Binding Name}" Height="20" />
+            <TextBlock FontWeight="Black" Text="着色颜色" />
+            <Button
+                Height="20"
+                Margin="0,5"
+                Background="{Binding Color, Mode= OneWay, Converter={StaticResource colorConverter}}"
+                Command="{Binding SetColorCommand}" />
+            <TextBlock Text="外观颜色" FontWeight="Black" />
+            <Button
+                Height="20"
+                Margin="0,5"
+                Background="{Binding AppearanceColor, Mode= OneWay, Converter={StaticResource colorConverter}}"
+                Command="{Binding SetAppearanceColorCommand}" />
+        </StackPanel>
+
+        <Border
+            Grid.Row="1"
+            Margin="5"
+            Padding="0,5,0,0"
+            BorderBrush="Gray"
+            BorderThickness="0,1,0,0">
+            <Button Command="{Binding SubmitCommand}" 
+                    Background="#393F48" 
+                    Foreground="WhiteSmoke" 
+                    Content="确定" 
+                    Margin="0,-6,0,0" />
+        </Border>
     </Grid>
 </Window>
+

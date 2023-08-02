@@ -4,9 +4,208 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BIlter.Views"
-        mc:Ignorable="d"
-        Title="Materials" Height="450" Width="800">
-    <Grid>
-        
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:vm="clr-namespace:BIlter.ViewModels"
+        xmlns:converter="clr-namespace:BIlter.Converter"
+        d:DataContext="{d:DesignInstance Type=vm:MaterialsViewModel}"
+        WindowStartupLocation="CenterScreen"
+        x:Name="materialWindow"
+        Title="Materials" 
+        Height="500" 
+        Width="820"
+        mc:Ignorable="d">
+    <Window.Style>
+        <Style TargetType="Window">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Window">
+                        <Border Background="#FFFFFF" CornerRadius="0" Opacity="0.97">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
+
+    <Window.Resources>
+        <converter:ColorConverter x:Key="colorConverter"></converter:ColorConverter>
+    </Window.Resources>
+
+
+    <Grid Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Left" Width="290" Orientation="Horizontal">
+            <TextBox 
+                Width="280"  
+                VerticalContentAlignment="Center" 
+                Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged}" 
+                Height="36">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <i:InvokeCommandAction Command="{Binding QueryElementsCommand}"></i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4"/>
+                        <Setter Property="BorderBrush" Value="#c1d0dc"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+        </StackPanel>
+
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="510,0,0,0" Width="270">
+
+            <Button Command="{Binding CreateElementCommand}" Content="创建" Margin="2" Height="36" Width="60" BorderBrush="GhostWhite">
+                <Button.Template >
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
+                            <Border.Background>#FFFFFF</Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="删除" 
+                    Margin="2" 
+                    Name="btn_deleteMaterials" 
+                    Command="{Binding DeleteElementsCommand}" 
+                    CommandParameter="{Binding ElementName=materials, Path=SelectedItems}" 
+                    Height="36" 
+                    Width="61"
+                    BorderBrush="GhostWhite">
+                <Button.Template >
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
+
+                            <Border.Background>#FFFFFF</Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="导入Excel" Margin="2" Height="36" Width="60" BorderBrush="GhostWhite">
+                <Button.Template >
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
+                            <Border.Background>#FFFFFF</Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button Content="导出模板" Margin="2" Height="36" Width="60" BorderBrush="GhostWhite">
+                <Button.Template >
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
+                            <Border.Background>#FFFFFF</Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+
+        <ListBox 
+            x:Name="materials" 
+            ItemsSource="{Binding Materials}"
+            SelectionMode="Extended"
+            Grid.Row="1" 
+            Margin="0,5" 
+            >
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border x:Name="back">
+                                    <ContentPresenter/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="back" Property="Background" Value="#AFEEEE"></Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="5" Background="Transparent">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <Border 
+                                    Width="20"
+                                    Height="20"
+                                    Background="{Binding Color,Converter={StaticResource colorConverter}}"
+                                    BorderThickness="1"
+                                    BorderBrush="Gray"
+                                    CornerRadius="5"/>
+                                <TextBlock 
+                                    Margin="5,0"
+                                    VerticalAlignment="Center"  
+                                    Text="{Binding Name}"/>
+
+                                <Border HorizontalAlignment="Right"
+                                         Width="20"
+                                         Height="20"
+                                         CornerRadius="5"
+                                         BorderThickness="1"
+                                         BorderBrush="Gray"
+                                         Background="{Binding AppearanceColor,Converter={StaticResource colorConverter}}"/>
+
+                            </StackPanel>
+                            <Button 
+                                HorizontalAlignment="Right"
+                                BorderBrush="LightGray"
+                                Command="{Binding ElementName=materialWindow, Path=DataContext.EditMaterialCommand}"
+                                CommandParameter="{Binding}"
+                                Content="编辑"
+                                Background="White" 
+                                Height="22" 
+                                Width="50" 
+                                Margin="3" >
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="6"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Grid.Row="2" 
+                Content="确定" 
+                Foreground="White" 
+                x:Name="btn_submit" 
+                Command="{Binding SubmitCommand}"
+                Margin="0, 3, 0, -1"
+                >
+            <Button.Template >
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="6">
+                        <Border.Background>#393F48</Border.Background>
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

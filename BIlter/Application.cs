@@ -59,7 +59,7 @@ namespace BIlter
             application.CreateRibbonTab(_tab);
             Autodesk.Revit.UI.RibbonPanel panelFamily = application.CreateRibbonPanel(_tab, panelName1);
 
-            panelFamily.CreatePushButton<Commands.Command>((MM) =>
+            panelFamily.CreatePushButton<Commands.MaterialsCommand>((MM) =>
             {
                 MM.Text = "材质管理器";
                 MM.LargeImage = Properties.Resources.layer_32 .ConvertToBitmapSource();
