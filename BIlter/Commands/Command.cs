@@ -1,20 +1,22 @@
 ﻿using Autodesk.Revit.Attributes;
-using BIlter.ViewModels;
-using BIlter.Views;
-using Nice3point.Revit.Toolkit.External;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BIlter.Commands
 {
-    [UsedImplicitly]
     [Transaction(TransactionMode.Manual)]
-    public class Command : ExternalCommand
+    public class Command : IExternalCommand
     {
-        public override void Execute()
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            //新建了一个viewModel连接到
-            var viewModel = new BIlterViewModel();
-            var view = new BIlterView(viewModel);
-            view.ShowDialog();
+
+
+            return Result.Succeeded;
         }
     }
 }

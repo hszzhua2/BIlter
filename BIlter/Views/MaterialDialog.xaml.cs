@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,23 +16,22 @@ using System.Windows.Shapes;
 namespace BIlter.Views
 {
     /// <summary>
-    /// View.xaml 的交互逻辑
+    /// MaterialDialog.xaml 的交互逻辑
     /// </summary>
-    public partial class View : Window
+    public partial class MaterialDialog : Window
     {
-        public View()
+        public MaterialDialog()
         {
             InitializeComponent();
-        }
-        private void ButtonClick(object sender, RoutedEventArgs e)
-        {
-            string inputText = InputTextBox.Text;
-            MessageBox.Show(inputText);
+            Messenger.Default.Register<bool>(this, Contacts.Tokens.MaterialsDialog, CloseWindow);
+            this.Unloaded += (o, e) => { Messenger.Default.Unregister(this); };
         }
 
-        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        private void CloseWindow(bool obj)
         {
-            Close();
+            this.DialogResult = obj;
+            this.Close();
         }
+
     }
 }

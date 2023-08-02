@@ -83,6 +83,26 @@ namespace BIlter.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap layer_16 {
+            get {
+                object obj = ResourceManager.GetObject("layer_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap layer_32 {
+            get {
+                object obj = ResourceManager.GetObject("layer_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap RibbonIcon16 {
             get {
                 object obj = ResourceManager.GetObject("RibbonIcon16", resourceCulture);

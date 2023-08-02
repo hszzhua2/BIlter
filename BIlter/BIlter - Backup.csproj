@@ -61,15 +61,14 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="MvvmLight" Version="5.4.1.1" />
         <PackageReference Include="Nice3point.Revit.Api.UIFramework" Version="2024.0.0" />
         <PackageReference Include="Nice3point.Revit.Toolkit" Version="$(RevitVersion).*" />
         <PackageReference Include="Nice3point.Revit.Extensions" Version="$(RevitVersion).*" />
         <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*-*" />
         <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*-*" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.*" />
         <PackageReference Include="Serilog" Version="2.*" />
         <PackageReference Include="Serilog.Sinks.Debug" Version="2.*" />
-        <PackageReference Include="Tuna.Revit.Extension" Version="2024.0.6" />
     </ItemGroup>
 
     <ItemGroup>
@@ -87,20 +86,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="IServices\" />
         <Folder Include="Resources\TooltipVideos\" />
         <Folder Include="Resources\TooltipImages\" />
-        <Folder Include="Services\" />
         <Folder Include="ViewModels\Converters\" />
         <Folder Include="ViewModels\Objects" />
+        <Folder Include="Views\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\BIlter.Extension\BIlter.Extension.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="System.Windows.Forms" />
     </ItemGroup>
 
     <ItemGroup>

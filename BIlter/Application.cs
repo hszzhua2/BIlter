@@ -59,21 +59,22 @@ namespace BIlter
             application.CreateRibbonTab(_tab);
             Autodesk.Revit.UI.RibbonPanel panelFamily = application.CreateRibbonPanel(_tab, panelName1);
 
-            panelFamily.CreatePushButton<Commands.Command>((Oo) =>
+            panelFamily.CreatePushButton<Commands.Command>((MM) =>
             {
-                Oo.Text = "BIlter";
-                Oo.LargeImage = Properties.Resources.Family_32.ConvertToBitmapSource();
-                Oo.Image = Properties.Resources.Family_16.ConvertToBitmapSource();
-                Oo.ToolTip = "";
-                Oo.ToolTipImage = Properties.Resources.Windows32.ConvertToBitmapSource(); ;
-                Oo.LongDescription = "BIMObject.com is a global marketplace for the construction industry.We provide design inspiration and digital product information to the world's architects and engineers while giving building product manufacturers a better way to reach, influence, and understand them.";
-            });
+                MM.Text = "材质管理器";
+                MM.LargeImage = Properties.Resources.layer_32 .ConvertToBitmapSource();
+                MM.Image = Properties.Resources.layer_16.ConvertToBitmapSource();
+                MM.ToolTip = "文件内材质的增删查改。";
+                MM.ToolTipImage = Properties.Resources.Windows32.ConvertToBitmapSource(); ;
+                MM.LongDescription = "";
+                });
 
             return Result.Succeeded;
         }
 
         public Result OnShutdown(UIControlledApplication application)
         {
+            //pass
             return Result.Succeeded;
         }
     }

@@ -12,6 +12,15 @@ namespace BIlter.Extension.Extensions
     /// </summary>
     public static class TransactionExtension
     {
+        public static void NewTransaction(this Document document, string name, Action action)
+        {
+            using (Transaction ts = new Transaction(document, name))
+            {
+                ts.Start();
+                action?.Invoke();
+                ts.Commit();
+            }
+        }
         /// <summary>
         /// Start a revit database transaction . <br/><br/>
         ///<example>
