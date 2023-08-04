@@ -11,7 +11,6 @@ namespace BIlter.Interfaces
     public interface IDataContext
     {
 
-
         Document Document { get; set; }
 
         UIDocument GetUIDocument();

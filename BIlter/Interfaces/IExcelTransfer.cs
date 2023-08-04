@@ -9,9 +9,19 @@ namespace BIlter.Interfaces
 {
     public interface IExcelTransfer<TElement>
     {
+        #region <summary> 数据导入
+
+
+        #endregion
 
 
         IExcelTransfer<TElement> Import();
+
+
+        #region <summary> 数据导出
+
+
+        #endregion
 
 
 

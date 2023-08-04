@@ -8,7 +8,7 @@ namespace BIlter.Interfaces
 {
     public interface IDataService<TElement>
     {
-        IEnumerable<TElement> GetElements(Func<TElement, bool> predicate = null);
+        IEnumerable<TElement> GetElements(Func<TElement, bool > predicate = null);
 
         void DeleteElement(TElement element);
 

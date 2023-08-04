@@ -11,32 +11,7 @@ namespace BIlter
     {
         private const string _tab = "BIlter";
         private const string panelName1 = "BIlter";
-        /*public override void OnStartup()
-        {
-            CreateLogger();
-            CreateRibbon();
-        }
-
-        public override void OnShutdown()
-        {
-            Log.CloseAndFlush();
-        }
-
-        private void CreateRibbon()
-        {
-            var panel = Application.CreatePanel("Commands", "BIlter");
-
-            var showButton = panel.AddPushButton<Command>("Execute");
-            showButton.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
-            showButton.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
-
-
-            var winButton = panel.AddPushButton<RelayCommand>("SimpleMVVM");
-            winButton.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
-            winButton.SetLargeImage("/BIlter;component/Resources/Icons/Windows32.png");
-            //ExtensionVideo = new Uri("C:\\Program Files\\Autodesk\\Revit 2023\\videos\\tooltip.mp4")
-        }*/
-
+        
         private static void CreateLogger()
         {
             const string outputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
@@ -62,10 +37,7 @@ namespace BIlter
             panelFamily.CreatePushButton<Commands.MaterialsCommand>((MM) =>
             {
                 MM.Text = "材质管理器";
-                MM.LargeImage = Properties.Resources.layer_32 .ConvertToBitmapSource();
-                MM.Image = Properties.Resources.layer_16.ConvertToBitmapSource();
                 MM.ToolTip = "文件内材质的增删查改。";
-                MM.ToolTipImage = Properties.Resources.Windows32.ConvertToBitmapSource(); ;
                 MM.LongDescription = "";
                 });
 

@@ -23,7 +23,7 @@ namespace BIlter.Views
         public MaterialDialog()
         {
             InitializeComponent();
-            Messenger.Default.Register<bool>(this, Contacts.Tokens.MaterialsDialog, CloseWindow);
+            Messenger.Default.Register<bool>(this, Contacts.Tokens.Materials2, CloseWindow);
             this.Unloaded += (o, e) => { Messenger.Default.Unregister(this); };
         }
 

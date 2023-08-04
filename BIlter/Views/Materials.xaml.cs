@@ -27,7 +27,7 @@ namespace BIlter.Views
         public Materials(Document document)
         {
             InitializeComponent();
-            this.DataContext = new MaterialsViewModel(document);
+
             Messenger.Default.Register<bool>(this, Contacts.Tokens.MaterialsDialog, CloseWindow);
             Messenger.Default.Register<NotificationMessageAction<BOX_Material>>(this, Contacts.Tokens.ShowMaterialsDialog, ShowMaterialDialog);
 
@@ -42,11 +42,10 @@ namespace BIlter.Views
 
         }
 
-        //然后注销
         private void Materials_Unloaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Unregister<bool>(this);
-            Messenger.Default.Unregister<bool>(this.DataContext);
+            Messenger.Default.Unregister(this);
+            Messenger.Default.Unregister(this.DataContext);
         }
         private void CloseWindow(bool result)
         {

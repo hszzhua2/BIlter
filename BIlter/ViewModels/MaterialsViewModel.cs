@@ -11,14 +11,36 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using BIlter.Extension.Extensions;
+using BIlter.IServices;
+using BIlter.Interfaces;
 
 namespace BIlter.ViewModels
 {
     public class MaterialsViewModel : ViewModelBase
     {
 
-        private Document _document;
+        private readonly MaterialsViewModel _service;
+        private ObservableCollection<BOX_Material> _materials;
 
+        /*public MaterialsViewModel(IMaterialService service)
+        {
+            _service = service;
+            GetElements();
+        }
+
+
+        #region Methods
+        private void GetElements()
+        {
+            Materials = new ObservableCollection<BOX_Material>(_service.GetElements(equals => string.IsNullOrEmpty(Keyword) || e.Name.Contains(Keyword)));
+        }
+
+        #endregion*/
+
+
+
+
+        private Document _document;
         public MaterialsViewModel(Document document)
         {
             this._document = document;
@@ -34,7 +56,7 @@ namespace BIlter.ViewModels
         //定义 事件命令的字段
 
         //材质列表
-        private ObservableCollection<BOX_Material> _materials;
+        
         public ObservableCollection<BOX_Material> Materials
         {
             get { return _materials; }

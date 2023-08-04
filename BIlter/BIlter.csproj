@@ -7,6 +7,7 @@
         <TargetFramework>net48</TargetFramework>
         <Configurations>Debug R20;Debug R21;Debug R22;Debug R23;Debug R24</Configurations>
         <Configurations>$(Configurations);Release R20;Release R21;Release R22;Release R23;Release R24</Configurations>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     </PropertyGroup>
     <PropertyGroup Condition="$(Configuration.Contains('Debug'))">
         <DebugType>full</DebugType>
@@ -69,6 +70,7 @@
         <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*-*" />
         <PackageReference Include="Serilog" Version="2.*" />
         <PackageReference Include="Serilog.Sinks.Debug" Version="2.*" />
+        <PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
         <PackageReference Include="Tuna.Revit.Extension" Version="2024.0.6" />
     </ItemGroup>
 
@@ -87,10 +89,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="IServices\" />
         <Folder Include="Resources\TooltipVideos\" />
         <Folder Include="Resources\TooltipImages\" />
-        <Folder Include="Services\" />
         <Folder Include="ViewModels\Converters\" />
         <Folder Include="ViewModels\Objects" />
     </ItemGroup>
@@ -110,6 +110,15 @@
         <DependentUpon>Resources.resx</DependentUpon>
       </Compile>
     </ItemGroup>
+
+	<!--<PropertyGroup>
+		<GenerateResourceMSBuildArchitecture>
+			CurrentArchitecture
+		</GenerateResourceMSBuildArchitecture>
+		<GenerateResourceMSBuildRuntime>
+			CurrentRuntime
+		</GenerateResourceMSBuildRuntime>
+	</PropertyGroup>-->
 
     <ItemGroup>
       <EmbeddedResource Update="Properties\Resources.resx">
