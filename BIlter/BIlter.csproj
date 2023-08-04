@@ -70,7 +70,7 @@
         <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*-*" />
         <PackageReference Include="Serilog" Version="2.*" />
         <PackageReference Include="Serilog.Sinks.Debug" Version="2.*" />
-        <PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
+        <PackageReference Include="System.Resources.Extensions" Version="4.6.0" />
         <PackageReference Include="Tuna.Revit.Extension" Version="2024.0.6" />
     </ItemGroup>
 

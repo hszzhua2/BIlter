@@ -50,7 +50,7 @@ namespace BIlter.Extension.Interfaces
         /// <summary>
         /// Ribbon button ExpandedVideo
         /// </summary>
-        Uri ExpandedVideo { get; }
+        Uri ToolTipVideo { get; }
 
         /// <summary>
         /// Ribbon button ExpendContent

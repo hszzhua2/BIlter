@@ -14,7 +14,7 @@ namespace BIlter.Extension.Extensions
     public static class UIExtension
     {
         /// <summary>
-        /// Create ribbon push button
+        /// 创建RibbonPanel, 返回panel
         /// </summary>
         /// <typeparam name="T">IExternalCommand</typeparam>
         /// <param name="panel"></param>
@@ -41,7 +41,7 @@ namespace BIlter.Extension.Extensions
         }
 
         /// <summary>
-        /// Create a revit ribbon push button
+        /// Create a revit ribbon push button 创建PushButtonData, 返回pushButtonData
         /// </summary>
         /// <typeparam name="TCommand"></typeparam>
         /// <returns></returns>
