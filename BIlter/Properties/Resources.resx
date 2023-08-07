@@ -117,29 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Family-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Family-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Family-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Family-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="layer_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\layer_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="layer_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\layer_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RibbonIcon16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\RibbonIcon16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RibbonIcon32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\RibbonIcon32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Windows16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Windows32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\Windows32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>
