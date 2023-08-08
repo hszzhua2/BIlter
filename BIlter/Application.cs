@@ -64,14 +64,15 @@ namespace BIlter
                 ExpandedVideo = new Uri("C:\\Program Files\\Autodesk\\Revit 2023\\videos\\tooltip.mp4"),
             };
             SetRibbonItemToolTip(buttomMMPlus, toolTip);
+
             #endregion
 
             #region CV 检查版本
             var buttomCV = new PushButtonData("Check Version", "Check Version", typeof(Application).Assembly.Location, "BIlter.Commands.GetRvtVersion");
 
             var buttomCVPlus = panelFamily.AddItem(buttomCV) as PushButton;
-            buttomCVPlus.SetLargeImage("/BIlter;component/Resources/Icons/Version32.png");
-            buttomCVPlus.SetImage("/BIlter;component/Resources/Icons/Version16.png");
+            buttomCVPlus.SetLargeImage("/BIlter;component/Resources/Icons/WebBlueAnimation32x32.gif");
+            buttomCVPlus.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
             RibbonToolTip toolTip2 = new RibbonToolTip()
             {
                 Title = "Check File Version",
@@ -80,6 +81,12 @@ namespace BIlter
             };
             SetRibbonItemToolTip(buttomCVPlus, toolTip2);
             #endregion
+
+            //创建一个空白的Stack
+            /*PulldownButtonData stackData = new PulldownButtonData("Stack", "Stack");
+            PulldownButton stackButton = panelFamily.AddItem(stackData) as PulldownButton;
+            stackButton.AddPushButton(buttomMM);
+            stackButton.AddPushButton(buttomCV);*/
 
 
             return Result.Succeeded;
