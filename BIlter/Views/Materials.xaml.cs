@@ -24,21 +24,25 @@ namespace BIlter.Views
     public partial class Materials : System.Windows.Window
     {
 
-        public Materials(Document document)
+        public Materials()
         {
             InitializeComponent();
 
             Messenger.Default.Register<bool>(this, Contacts.Tokens.MaterialsDialog, CloseWindow);
-            Messenger.Default.Register<NotificationMessageAction<BOX_Material>>(this, Contacts.Tokens.ShowMaterialsDialog, ShowMaterialDialog);
-
+            Messenger.Default.Register<NotificationMessageAction<BOX_Material>>(this, Contacts.Tokens.ShowMaterialDialog, ShowMaterialDialog);
             this.Unloaded += Materials_Unloaded;
         }
 
         private void ShowMaterialDialog(NotificationMessageAction<BOX_Material> message)
         {
             MaterialDialog dialog = new MaterialDialog();
-            dialog.DataContext = new MaterialDialogViewModel(message);
-            dialog.ShowDialog();
+            MaterialDialogViewModel dialogViewModel = (MaterialDialogViewModel)message.Target;
+            dialog.DataContext = dialogViewModel;
+            dialogViewModel.Initial(message.Sender);
+            if (dialog.ShowDialog().Value)
+            {
+                message.Execute(dialogViewModel.Material);
+            };
 
         }
 

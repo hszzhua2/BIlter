@@ -9,24 +9,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BIlter.Extension.Extensions;
+using BIlter.IServices;
 
 namespace BIlter.ViewModels
 {
     public class MaterialDialogViewModel : ViewModelBase
     {
-        private NotificationMessageAction<BOX_Material> _message;
-        public MaterialDialogViewModel(NotificationMessageAction<BOX_Material> message)
-        {
-            if (message.Sender is BOX_Material material)
-            {
-                Material = material;
-                Name = material.Name;
-                Color = material.Color;
-                AppearanceColor = material.AppearanceColor;
-            }
-            _message = message;
-        }
+        private readonly IMaterialService _service;
 
+        public MaterialDialogViewModel(IMaterialService service)
+        {
+            this._service = service;
+        }
+        
+        public void Initial(object Sender)
+        {
+            if (Sender != null)
+            {
+                Material = (BOX_Material)Sender;
+                Name = Material.Name;
+                Color = Material.Color;
+                AppearanceColor = Material.AppearanceColor;
+            }
+        }
+        
         private string _name;
         private Color _color;
         private Color _appearanceColor;
@@ -48,8 +54,6 @@ namespace BIlter.ViewModels
 
         public BOX_Material Material { get; set; }
 
-
-
         public RelayCommand SetColorCommand
         {
             get => new RelayCommand(() =>
@@ -61,7 +65,6 @@ namespace BIlter.ViewModels
                 }
             });
         }
-
 
         public RelayCommand SetAppearanceColorCommand
         {
@@ -80,30 +83,18 @@ namespace BIlter.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                if (_message.Notification == "Create")
+                if (Material == null)
                 {
-                    Document document = _message.Target as Document;
-                    document.NewTransaction("创建材质", () =>
-                    {
-                        ElementId id = Autodesk.Revit.DB.Material.Create(document, Name);
-                        Material = new BOX_Material(document.GetElement(id) as Material);
-
-                    });
+                    Material = this._service.CreateELement(Name);
                 }
-
                 if (Material.Name != Name)
                     Material.Name = Name;
                 if (Material.Color != Color)
                     Material.Color = Color;
                 if (Material.AppearanceColor != AppearanceColor)
                     Material.AppearanceColor = AppearanceColor;
-
-                MessengerInstance.Send(Material, "InsertMaterial");
-                /*_message.Execute(Material);*/
-
-                Messenger.Default.Send(true, Contacts.Tokens.Materials2);
+                MessengerInstance.Send(true, Contacts.Tokens.MaterialDialog);
             });
         }
-
     }
 }

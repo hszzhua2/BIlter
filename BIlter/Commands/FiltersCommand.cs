@@ -1,19 +1,25 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using BIlter.Extension.Extensions;
-using BIlter.Toolkit.Mvvm;
-using BIlter.Toolkit.Mvvm.Extensions;
 using BIlter.ViewModels;
 using GalaSoft.MvvmLight.Ioc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using UIFramework;
+using BIlter.Toolkit.Mvvm;
+using BIlter.Extension.Extensions;
+using BIlter.Toolkit.Mvvm.Extensions;
 
 namespace BIlter.Commands
 {
     [Transaction(TransactionMode.Manual)]
     [Journaling(JournalingMode.NoCommandData)]
     [Regeneration(RegenerationOption.Manual)]
-    public class MaterialsCommand : CommandBase
+    public class FiltersCommand : CommandBase
     {
         public override Window CreateMainWidow()
         {
@@ -28,10 +34,6 @@ namespace BIlter.Commands
                     return MainWindow.ShowDialog().Value;
                 });
             return status == TransactionStatus.Committed ? Result.Succeeded : Result.Cancelled;
-        }
-        public override void RegisterTypes(SimpleIoc simpleIoc)
-        {
-            base.RegisterTypes(simpleIoc);
         }
     }
 }

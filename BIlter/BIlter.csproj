@@ -97,6 +97,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BIlter.Extension\BIlter.Extension.csproj" />
+      <ProjectReference Include="..\BIlter.Toolkit.Mvvm\BIlter.Toolkit.Mvvm.csproj" />
     </ItemGroup>
 
     <ItemGroup>

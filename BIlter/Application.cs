@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Resources.Extensions;
 using Nice3point.Revit.Toolkit.External;
 using Nice3point.Revit.Extensions;
+using BIlter.Extension.Extensions;
 
 namespace BIlter
 {
@@ -47,7 +48,7 @@ namespace BIlter
 
         public Result OnStartup(UIControlledApplication application)
         {
-            application.CreateRibbonTab(_tab); 
+            application.CreateRibbonTab(_tab);
             var panelFamily = application.CreateRibbonPanel(_tab, panelName1);
 
             #region MM 材质管理
@@ -57,7 +58,7 @@ namespace BIlter
             buttomMMPlus.SetLargeImage("/BIlter;component/Resources/Icons/Windows32.png");
             buttomMMPlus.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
             RibbonToolTip toolTip = new RibbonToolTip()
-            { 
+            {
                 Title = "Material Manager",
                 Content = "A manager for materials editing, creating, deleting, importing and exporting.",
                 ExpandedContent = "A manager for materials editing, creating, deleting, importing and exporting. The color editor and creator are support and it is only supported to edit appearance color.",
@@ -67,31 +68,13 @@ namespace BIlter
 
             #endregion
 
-            #region CV 检查版本
-            var buttomCV = new PushButtonData("Check Version", "Check Version", typeof(Application).Assembly.Location, "BIlter.Commands.GetRvtVersion");
-
-            var buttomCVPlus = panelFamily.AddItem(buttomCV) as PushButton;
-            buttomCVPlus.SetLargeImage("/BIlter;component/Resources/Icons/WebBlueAnimation32x32.gif");
-            buttomCVPlus.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
-            RibbonToolTip toolTip2 = new RibbonToolTip()
-            {
-                Title = "Check File Version",
-                Content = "To check version of an .rvt file.",
-                ExpandedContent = ".",
-            };
-            SetRibbonItemToolTip(buttomCVPlus, toolTip2);
-            #endregion
-
             //创建一个空白的Stack
-            /*PulldownButtonData stackData = new PulldownButtonData("Stack", "Stack");
+            PulldownButtonData stackData = new PulldownButtonData("Stack", "Stack");
             PulldownButton stackButton = panelFamily.AddItem(stackData) as PulldownButton;
             stackButton.AddPushButton(buttomMM);
-            stackButton.AddPushButton(buttomCV);*/
-
-
             return Result.Succeeded;
         }
-        
+
         public static void SetRibbonItemToolTip(Autodesk.Revit.UI.RibbonItem item, RibbonToolTip toolTip)
         {
             var ribbonItem = GetRibbonItem(item);

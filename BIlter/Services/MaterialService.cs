@@ -3,12 +3,16 @@ using BIlter.Entity;
 using BIlter.Extension.Extensions;
 using BIlter.Interfaces;
 using BIlter.IServices;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using BIlter.Toolkit.Mvvm.Interfaces;
+using IDataContext = BIlter.Toolkit.Mvvm.Interfaces.IDataContext;
 
 namespace BIlter.Services
 {
@@ -24,10 +28,10 @@ namespace BIlter.Services
         public BOX_Material CreateELement(string name)
         {
             Element element = null;
-            _dataContext.Document.NewTransaction("创建材质", () =>
+            _dataContext.GetDocument().NewTransaction("创建材质", () =>
             {
-                ElementId id = Material.Create(_dataContext.Document, name);
-                element = _dataContext.Document.GetElement(id);
+                ElementId id = Material.Create(_dataContext.GetDocument(), name);
+                element = _dataContext.GetDocument().GetElement(id);
             });
             return new BOX_Material(element as Material);
         }
@@ -37,19 +41,22 @@ namespace BIlter.Services
             if (element == null)
                 return;
 
-            _dataContext.Document.NewTransaction("删除材质", () =>
+            _dataContext.GetDocument().NewTransaction("删除材质", () =>
             {
-                /*_dataContext.Document.Delete(element.Id);*/
+                _dataContext.GetDocument().Delete(element.Id);
             });
         }
 
         public void DeleteElements(IEnumerable<BOX_Material> elements)
         {
-            _dataContext.Document.NewTransaction("删除材质", () =>
+
+            _dataContext.GetDocument().NewTransaction("删除材质", () =>
             {
                 foreach (var material in elements)
                 {
-                    /*_dataContext.Document.Delete(elements.Id);*/
+                    Messenger.Default.Send<string>(material.Name, Contacts.Tokens.ProgressBarTitle);
+                    _dataContext.GetDocument().Delete(material.Id);
+                    _dataContext.GetDocument().Regenerate();
                 }
             });
         }
@@ -57,7 +64,7 @@ namespace BIlter.Services
 
         public IEnumerable<BOX_Material> GetElements(Func<BOX_Material, bool> predicate = null)
         {
-            FilteredElementCollector elements = new FilteredElementCollector(_dataContext.Document).OfClass(typeof(Material));
+            FilteredElementCollector elements = new FilteredElementCollector(_dataContext.GetDocument()).OfClass(typeof(Material));
             IEnumerable<BOX_Material> materials = elements.ToList()
                 .ConvertAll(x => new BOX_Material(x as Material));
 

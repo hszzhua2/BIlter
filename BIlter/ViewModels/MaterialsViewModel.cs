@@ -14,114 +14,31 @@ using BIlter.Extension.Extensions;
 using BIlter.IServices;
 using BIlter.Interfaces;
 
+
 namespace BIlter.ViewModels
 {
     public class MaterialsViewModel : ViewModelBase
     {
 
-        private readonly MaterialsViewModel _service;
+        private readonly IMaterialService _service;
+        private readonly IProgressBarService _progressBarService;
         private ObservableCollection<BOX_Material> _materials;
 
-        /*public MaterialsViewModel(IMaterialService service)
+        public MaterialsViewModel(IMaterialService service, IProgressBarService progressBarService)
         {
             _service = service;
+            this._progressBarService = progressBarService;
             GetElements();
         }
-
 
         #region Methods
         private void GetElements()
         {
-            Materials = new ObservableCollection<BOX_Material>(_service.GetElements(equals => string.IsNullOrEmpty(Keyword) || e.Name.Contains(Keyword)));
-        }
-
-        #endregion*/
-
-
-
-
-        private Document _document;
-        public MaterialsViewModel(Document document)
-        {
-            this._document = document;
-            QueryElements();
-            MessengerInstance.Register<BOX_Material>(this, "InsertMaterial", InsertMaterial);
-        }
-
-        private void InsertMaterial(BOX_Material obj)
-        {
-            Materials.Insert(0, obj);
-        }
-
-        //定义 事件命令的字段
-
-        //材质列表
-        
-        public ObservableCollection<BOX_Material> Materials
-        {
-            get { return _materials; }
-            set { Set(ref _materials, value); }
-        }
-
-
-        #region 删除命令/中继命令/字段
-        //删除
-        private RelayCommand<IList> _deleteElementsCommand;
-
-        //中继命令
-        private void DeleteElements(IList selectedElements)
-        {
-            _document.NewTransaction("删除材质", () =>
-            {
-                for (int i = selectedElements.Count - 1; i >= 0; i--)
-                {
-                    BOX_Material? material = selectedElements[i] as BOX_Material;
-                    _document.Delete(material.Material.Id);
-                    Materials.Remove(material);
-                }
-            });
-        }
-
-        public RelayCommand<IList> DeleteElementsCommand
-        {
-            get => _deleteElementsCommand ?? new RelayCommand<IList>(DeleteElements);
+            Materials = new ObservableCollection<BOX_Material>(_service.GetElements(e => string.IsNullOrEmpty(Keyword) || e.Name.Contains(Keyword)));
         }
         #endregion
 
-
-        #region 搜索功能
-
-        //查询
-        private RelayCommand _queryElementsCommand;
-        //关键字
-        private string _keyword;
-        public RelayCommand QueryElementsCommand { get => _queryElementsCommand ??= new RelayCommand(QueryElements); }
-
-        private bool CanQueryElements()
-        {
-            return string.IsNullOrEmpty(_keyword);
-        }
-        private void QueryElements()
-        {
-
-            FilteredElementCollector elements = new FilteredElementCollector(_document).OfClass(typeof(Material));
-            var materials = new ObservableCollection<BOX_Material>(elements.ToList()
-                .ConvertAll(x => new BOX_Material(x as Material))
-                .Where(e => string.IsNullOrEmpty(Keyword) || e.Name.Contains(Keyword)));
-
-            Materials = new ObservableCollection<BOX_Material>(materials);
-
-        }
-
-        public string Keyword
-        {
-            get { return _keyword; }
-            set { _keyword = value; _queryElementsCommand.RaiseCanExecuteChanged(); }
-        }
-        #endregion
-
-
-
+        public RelayCommand QueryElementsCommand { get => new RelayCommand(GetElements); }
 
         #region 创建材质窗口
 
@@ -130,48 +47,68 @@ namespace BIlter.ViewModels
         {
             get => new RelayCommand(() =>
             {
-                MessengerInstance.Send(new NotificationMessageAction<BOX_Material>(null, _document, "Create", (e) =>
-                {
-                    if (e != null)
+                MessengerInstance.Send(new NotificationMessageAction<BOX_Material>(null,
+                    new MaterialDialogViewModel(this._service),
+                    "Create",
+                    (e) =>
                     {
                         Materials.Insert(0, e);
-                    }
-                }), Contacts.Tokens.ShowMaterialsDialog);
+                    }), Contacts.Tokens.ShowMaterialDialog);
             });
         }
         #endregion
 
-        #region 编辑窗口
+        #region 编辑
 
         //编辑
-        private RelayCommand<BOX_Material> _editCommand;
         public RelayCommand<BOX_Material> EditMaterialCommand
         {
-            get => _editCommand ??= new RelayCommand<BOX_Material>(EditMaterial);
-        }
-        private void EditMaterial(BOX_Material obj)
-        {
-            MessengerInstance.Send(new NotificationMessageAction<BOX_Material>(obj, _document, "Edit", (e) =>
+            get => new RelayCommand<BOX_Material>((m) =>
             {
+                MessengerInstance.Send(new NotificationMessageAction<BOX_Material>(m,
+                    new MaterialDialogViewModel(this._service),
+                    "Edit",
+                    (e) =>
+                    {
 
-            }), Contacts.Tokens.ShowMaterialsDialog);
+                    }), Contacts.Tokens.ShowMaterialDialog);
+
+            });
         }
         #endregion
 
+        #region 删除
 
-        #region 提交命令（组）
-        //提交命令（组）
-        private RelayCommand _sumbitCommand;
-        public RelayCommand SubmitCommand { get => _sumbitCommand ??= new RelayCommand(Submit); }
-
-        private void Submit()
+        public RelayCommand<IList> DeleteElementsCommand
         {
-            MessengerInstance.Send(true, Contacts.Tokens.MaterialsDialog);
+            get => new RelayCommand<IList>((selectedElements) =>
+            {
+                this._progressBarService.Start(selectedElements.Count);
+                _service.DeleteElements(selectedElements.Cast<BOX_Material>());
+                GetElements();
+                this._progressBarService.Stop();
+            });
         }
         #endregion
 
+        public RelayCommand ExportExcelCommand
+        {
+            get => new RelayCommand(() => _service.Export(Materials));
+        }
 
+        public RelayCommand ImportExcelCommand
+        {
+            get => new RelayCommand(() => _service.Import());
+        }
 
+        public RelayCommand SubmitCommand { get => new RelayCommand(() => { MessengerInstance.Send(true, Contacts.Tokens.MaterialsDialog); }); }
 
+        public ObservableCollection<BOX_Material> Materials
+        {
+            get { return _materials; }
+            set { Set(ref _materials, value); }
+        }
+
+        public string Keyword { get; set; }
     }
 }

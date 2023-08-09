@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Color = Autodesk.Revit.DB.Color;
 using Material = Autodesk.Revit.DB.Material;
+using System.Runtime.CompilerServices;
 
 namespace BIlter.Entity
 {
@@ -24,50 +25,49 @@ namespace BIlter.Entity
             _color = material.Color;
             _appearanceColor = GetAppearanceColor();
         }
+        public ElementId Id { get => Material.Id; }
+        public Material Material { get; set; }
+        public Document Document { get => Material.Document; }
 
         //上述的材质名称=>字段'_name'；上述材质颜色=>字段'_color'
         private string _name;
         private Color _color;
         private Color _appearanceColor;
 
-
-
-        public Material Material { get; private set; }
-
-        public Document Document { get => Material.Document; }
-
         //材质名称 =>可修改
         public string Name
         {
-            get => _name;
+            get => Material.Name;
             set
             {
-                Set(ref _name, value);
-                Document.NewTransaction("Modify Name", () => Material.Name = _name);
-
+                Document.NewTransaction("Modify Name", () => Material.Name = value);
+                RaisePropertyChanged();
             }
         }
         //材质颜色 =>可修改
         public Color Color
         {
-            get => _color;
+            get => Material.Color;
             set
             {
-                _color = value;
-                Document.NewTransaction("Modify Color", () => Material.Color = _color);
+                Document.NewTransaction("Modify Color", () => Material.Color = value);
                 RaisePropertyChanged();
             }
         }
 
         public Color AppearanceColor
         {
-            get => _appearanceColor;
+            get => GetAppearanceColor();
             set
             {
-                _appearanceColor = value;
-                Document.NewTransaction("Modify Appearance Color", () => SetAppearanceColor(_appearanceColor));
-                RaisePropertyChanged();
+                Set(value, (x) => { Document.NewTransaction("Modify Appearance Color", () => SetAppearanceColor(x)); });
             }
+        }
+
+        protected void Set<T>(T value, Action<T> callback, [CallerMemberName] string name = null)
+        {
+            callback.Invoke(value);
+            RaisePropertyChanged(name);
         }
 
         private AssetPropertyDoubleArray4d GetColorProperty(Asset asset)
@@ -91,7 +91,7 @@ namespace BIlter.Entity
         private void SetAppearanceColor(Color color)
         {
             ElementId id = Material.AppearanceAssetId;
-            if (id != null || id.IntegerValue == -1)
+            if (id != null && id.IntegerValue != -1)
             {
                 using (AppearanceAssetEditScope scope = new AppearanceAssetEditScope(Document))
                 {
@@ -100,15 +100,6 @@ namespace BIlter.Entity
                     scope.Commit(true);
                 }
             }
-        }
-        public void Save()
-        {
-            Document.NewTransaction("修改名称", () =>
-            {
-                Material.Name = this._name;
-                Material.Color = this._color;
-                SetAppearanceColor(this._appearanceColor);
-            });
         }
     }
 }

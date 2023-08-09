@@ -1,19 +1,23 @@
-﻿using Autodesk.Revit.DB;
+﻿
+using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using BIlter.Interfaces;
+using BIlter.Toolkit.Mvvm.Extensions;
+using BIlter.Toolkit.Mvvm.Interfaces;
+using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIlter.Services
+namespace BIlter.Toolkit.Mvvm
 {
     public class DataContext : IDataContext
     {
-        public DataContext(Document document) { this.Document = document; }
-
-        public Document Document { get; set; }
+        public Document GetDocument()
+        {
+            return SimpleIoc.Default.GetInstance<Document>();
+        }
 
         public UIApplication GetUIApplication()
         {
@@ -22,7 +26,7 @@ namespace BIlter.Services
 
         public UIDocument GetUIDocument()
         {
-            return new UIDocument(Document);
+            return new UIDocument(GetDocument());
         }
     }
 }
