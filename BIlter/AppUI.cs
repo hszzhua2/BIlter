@@ -26,13 +26,13 @@ namespace BIlter
 
             _uiProvider.GetUIApplication().CreateRibbonTab(_tab);
 
-            Autodesk.Revit.UI.RibbonPanel panelFamily = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "资源");
+            Autodesk.Revit.UI.RibbonPanel panelFamily = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "项目资源管理");
 
             #region MM 材质管理
-            var buttomMM = new PushButtonData("Material Manager", "Material Manager", typeof(Application).Assembly.Location, "BIlter.Commands.MaterialsCommand");
+            var buttomMM = new PushButtonData("Material Manager", "材质管理器", typeof(App).Assembly.Location, "BIlter.Commands.MaterialsCommand");
 
             var buttomMMPlus = panelFamily.AddItem(buttomMM) as PushButton;
-            buttomMMPlus.SetLargeImage("/BIlter;component/Resources/Icons/Windows32.png");
+            buttomMMPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
             buttomMMPlus.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
             RibbonToolTip toolTip = new RibbonToolTip()
             {
@@ -48,6 +48,8 @@ namespace BIlter
             //创建一个空白的Stack
             PulldownButtonData stackData = new PulldownButtonData("Stack", "Stack");
             PulldownButton stackButton = panelFamily.AddItem(stackData) as PulldownButton;
+            stackButton.SetLargeImage("/BIlter;component/Resources/Icons/Windows32.png");
+            stackButton.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
             stackButton.AddPushButton(buttomMM);
 
             return Result.Succeeded;
@@ -59,7 +61,11 @@ namespace BIlter
                 return;
             ribbonItem.ToolTip = toolTip;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private static Autodesk.Windows.RibbonItem? GetRibbonItem(Autodesk.Revit.UI.RibbonItem item)
         {
             Type itemType = item.GetType();

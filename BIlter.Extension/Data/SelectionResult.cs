@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BIlter.Extension.Data
-{/// <summary>
- /// Revit selection result
- /// </summary>
- /// <typeparam name="T"></typeparam>
+{
+    /// <summary>
+    /// Revit selection result
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SelectionResult<T>
     {
         /// <summary>

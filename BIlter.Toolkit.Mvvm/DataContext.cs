@@ -1,5 +1,4 @@
-﻿
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using BIlter.Toolkit.Mvvm.Extensions;
 using BIlter.Toolkit.Mvvm.Interfaces;
@@ -18,12 +17,10 @@ namespace BIlter.Toolkit.Mvvm
         {
             return SimpleIoc.Default.GetInstance<Document>();
         }
-
         public UIApplication GetUIApplication()
         {
             return GetUIDocument().Application;
         }
-
         public UIDocument GetUIDocument()
         {
             return new UIDocument(GetDocument());

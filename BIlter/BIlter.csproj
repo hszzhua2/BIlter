@@ -112,14 +112,14 @@
       </Compile>
     </ItemGroup>
 
-	<!--<PropertyGroup>
+	<PropertyGroup>
 		<GenerateResourceMSBuildArchitecture>
 			CurrentArchitecture
 		</GenerateResourceMSBuildArchitecture>
 		<GenerateResourceMSBuildRuntime>
 			CurrentRuntime
 		</GenerateResourceMSBuildRuntime>
-	</PropertyGroup>-->
+	</PropertyGroup>
 
     <ItemGroup>
       <EmbeddedResource Update="Properties\Resources.resx">

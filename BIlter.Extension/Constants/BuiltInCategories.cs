@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BIlter.Extension.Constants
-{/// <summary>
- /// Revit builtin categories
- /// </summary>
+{
+    /// <summary>
+    /// Revit builtin categories
+    /// </summary>
     public class BuiltInCategories
     {
         /// <summary>

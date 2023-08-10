@@ -31,17 +31,17 @@ namespace BIlter
 
         private void AppEvent_DocumentCreated(object sender, Autodesk.Revit.DB.Events.DocumentCreatedEventArgs e)
         {
-            System.Windows.MessageBox.Show("Created Project Succeeded");
+            /*System.Windows.MessageBox.Show("Created Project Succeeded");*/
         }
 
         private void AppEvent_DocumentClosed(object sender, Autodesk.Revit.DB.Events.DocumentClosedEventArgs e)
         {
-            System.Windows.MessageBox.Show("Closed Project Succeeded");
+            /*System.Windows.MessageBox.Show("Closed Project Succeeded");*/
         }
 
         private void AppEvent_DocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs e)
         {
-            System.Windows.MessageBox.Show("Opened Project Succeeded");
+            /*System.Windows.MessageBox.Show("Opened Project Succeeded");*/
         }
 
         

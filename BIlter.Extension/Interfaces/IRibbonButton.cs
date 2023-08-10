@@ -7,7 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BIlter.Extension.Interfaces
-{   /// <summary>
+{   
+    /// <summary>
     /// Revit ribbon ui push button information
     /// </summary>
     public interface IRibbonButton

@@ -17,7 +17,9 @@
         <StackPanel VerticalAlignment="Center">
             <ProgressBar Height="10" 
                          Maximum="{Binding Maximum}" 
-                         Value="{Binding Value}"/>
+                         Value="{Binding Value}"
+                         Background="Beige"
+                         Foreground="#40ABB2"/>
             <TextBlock Text="{Binding Title}" 
                        HorizontalAlignment="Center" 
                        Margin="20" 
