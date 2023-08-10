@@ -21,7 +21,7 @@ namespace BIlter.Views
     /// <summary>
     /// Materials.xaml 的交互逻辑
     /// </summary>
-    public partial class Materials : System.Windows.Window
+    public partial class Materials : Window
     {
 
         public Materials()

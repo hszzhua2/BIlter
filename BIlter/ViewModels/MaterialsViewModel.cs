@@ -78,7 +78,6 @@ namespace BIlter.ViewModels
         #endregion
 
         #region 删除
-
         public RelayCommand<IList> DeleteElementsCommand
         {
             get => new RelayCommand<IList>((selectedElements) =>

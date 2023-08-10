@@ -45,7 +45,7 @@ namespace BIlter.ViewModels
             set { _title = value; RaisePropertyChanged(); }
         }
 
-        }
+    }
 
 } 
 

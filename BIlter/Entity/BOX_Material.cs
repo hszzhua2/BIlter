@@ -16,23 +16,14 @@ namespace BIlter.Entity
 {
     public class BOX_Material : ObservableObject
     {
-        //定义DB.Material => 为material
+        
         public BOX_Material(Material material)
         {
             Material = material;
-
-            _name = material.Name;
-            _color = material.Color;
-            _appearanceColor = GetAppearanceColor();
         }
         public ElementId Id { get => Material.Id; }
         public Material Material { get; set; }
         public Document Document { get => Material.Document; }
-
-        //上述的材质名称=>字段'_name'；上述材质颜色=>字段'_color'
-        private string _name;
-        private Color _color;
-        private Color _appearanceColor;
 
         //材质名称 =>可修改
         public string Name
@@ -96,7 +87,7 @@ namespace BIlter.Entity
                 using (AppearanceAssetEditScope scope = new AppearanceAssetEditScope(Document))
                 {
                     Asset asset = scope.Start(id);
-                    GetColorProperty(asset).SetValueAsColor(color);
+                    GetColorProperty(asset)?.SetValueAsColor(color);
                     scope.Commit(true);
                 }
             }

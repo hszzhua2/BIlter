@@ -22,9 +22,10 @@ namespace BIlter
 
             //注册Service
             container.Register<IMaterialService, MaterialService>();
-            container.Register<ProgressBarDialogViewModel>();
+            container.Register<IProgressBarService, ProgressBarService>();
             //注册ViewModel
             container.Register<MaterialsViewModel>();
+            container.Register<ProgressBarDialogViewModel>();
             //注册View
             container.Register<Views.Materials>();
             container.Register<Views.ProgressBarDialog>();

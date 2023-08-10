@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace BIlter.Services
 {
+    //实现
     public class ProgressBarService : IProgressBarService
     {
         Views.ProgressBarDialog _dialog;
@@ -25,7 +26,7 @@ namespace BIlter.Services
 
         public void Stop()
         {
-            Messenger.Default.Unregister<int>(_dialog.DataContext);
+            Messenger.Default.Unregister(_dialog.DataContext);
             _dialog.Close();
         }
     }

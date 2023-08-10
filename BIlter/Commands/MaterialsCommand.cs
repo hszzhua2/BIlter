@@ -29,9 +29,6 @@ namespace BIlter.Commands
                 });
             return status == TransactionStatus.Committed ? Result.Succeeded : Result.Cancelled;
         }
-        public override void RegisterTypes(SimpleIoc simpleIoc)
-        {
-            base.RegisterTypes(simpleIoc);
-        }
+        
     }
 }

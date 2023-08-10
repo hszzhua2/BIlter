@@ -28,7 +28,6 @@ namespace BIlter
             panel.CreatePushButton<Commands.MaterialsCommand>((b) =>
             {
                 b.Text = "Material Manager";
-                b.LargeImage = Properties.Resources.Windows32.ConvertToBitmapSource();
                 b.ToolTip = "This is a material manager.";
                 b.LongDescription = "A manager for materials editing, creating, deleting, importing and exporting. The color editor and creator are support and it is only supported to edit appearance color.";
                 /*var bPlus = panel.AddItem(b) as PushButton;*/
