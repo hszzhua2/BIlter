@@ -1,32 +1,40 @@
 ﻿using Autodesk.Revit.UI;
 using Autodesk.Windows;
-using BIlter.Extension.Extensions;
-using BIlter.Toolkit.Mvvm.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Serilog.Events;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BIlter
 {
-    public class AppUI : IApplicationUI
+    [UsedImplicitly]
+    public class Application : IExternalApplication
     {
-        private readonly IUIProvider _uiProvider;
-
-        public AppUI(IUIProvider uIProvider)
+        public Result OnShutdown(UIControlledApplication application)
         {
-            this._uiProvider = uIProvider;
+            return Result.Succeeded;
         }
-        public Result Initial()
+        private static void CreateLogger()
         {
-            const string _tab = "BIlter";
+            const string outputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
-            _uiProvider.GetUIApplication().CreateRibbonTab(_tab);
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Debug(LogEventLevel.Debug, outputTemplate)
+                .MinimumLevel.Debug()
+                .CreateLogger();
 
-            Autodesk.Revit.UI.RibbonPanel panelFamily = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "资源");
+            AppDomain.CurrentDomain.UnhandledException += (_, args) =>
+            {
+                var e = (Exception)args.ExceptionObject;
+                Log.Fatal(e, "Domain unhandled exception");
+            };
+        }
+
+        private const string _tab = "BIlter";
+        private const string panelName1 = "BIlter";
+
+        public Result OnStartup(UIControlledApplication application)
+        {
+            application.CreateRibbonTab(_tab);
+            var panelFamily = application.CreateRibbonPanel(_tab, panelName1);
 
             #region MM 材质管理
             var buttomMM = new PushButtonData("Material Manager", "Material Manager", typeof(Application).Assembly.Location, "BIlter.Commands.MaterialsCommand");
@@ -47,11 +55,14 @@ namespace BIlter
 
             //创建一个空白的Stack
             PulldownButtonData stackData = new PulldownButtonData("Stack", "Stack");
+            
             PulldownButton stackButton = panelFamily.AddItem(stackData) as PulldownButton;
+            stackButton.SetLargeImage("/BIlter;component/Resources/Icons/Windows32.png");
+            stackButton.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
             stackButton.AddPushButton(buttomMM);
-
             return Result.Succeeded;
         }
+
         public static void SetRibbonItemToolTip(Autodesk.Revit.UI.RibbonItem item, RibbonToolTip toolTip)
         {
             var ribbonItem = GetRibbonItem(item);
