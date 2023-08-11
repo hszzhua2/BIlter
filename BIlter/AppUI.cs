@@ -2,13 +2,7 @@
 using Autodesk.Windows;
 using BIlter.Extension.Extensions;
 using BIlter.Toolkit.Mvvm.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BIlter
 {
@@ -33,7 +27,7 @@ namespace BIlter
 
             var buttomMMPlus = panelFamily.AddItem(buttomMM) as PushButton;
             buttomMMPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
-            buttomMMPlus.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
+            buttomMMPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
             RibbonToolTip toolTip = new RibbonToolTip()
             {
                 Title = "Material Manager",
@@ -45,12 +39,24 @@ namespace BIlter
 
             #endregion
 
-            //创建一个空白的Stack
-            PulldownButtonData stackData = new PulldownButtonData("Stack", "Stack");
-            PulldownButton stackButton = panelFamily.AddItem(stackData) as PulldownButton;
-            stackButton.SetLargeImage("/BIlter;component/Resources/Icons/Windows32.png");
-            stackButton.SetImage("/BIlter;component/Resources/Icons/Windows16.png");
-            stackButton.AddPushButton(buttomMM);
+            #region BIMObject
+            var bimob = new PushButtonData("BIMObject", "BIMObject", typeof(App).Assembly.Location, "BIlter.Commands.OpenURLCommand");
+
+            var bimobPlus = panelFamily.AddItem(bimob) as PushButton;
+            bimobPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
+            bimobPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
+            RibbonToolTip bimobtoolTip = new RibbonToolTip()
+            {
+                Title = "打开BIMObject网页",
+                Content = "公开免费族库网站BIMObject",
+                ExpandedContent = "BIMObject.com is a global marketplace for the construction industry. We provide design inspiration and digital product information to the world's architects and engineers while giving building product manufacturers a better way to reach, influence, and understand them.",
+                ExpandedVideo = new Uri("C:\\Program Files\\Autodesk\\Revit 2023\\videos\\tooltip.mp4"),
+            };
+            SetRibbonItemToolTip(bimobPlus, bimobtoolTip);
+
+            #endregion
+
+
 
             return Result.Succeeded;
         }
