@@ -79,7 +79,7 @@ namespace BIlter
             RibbonToolTip cpwtoolTip = new RibbonToolTip()
             {
                 Title = "CreatePathWeb",
-                Content = "选择一定数量防火门，创建模拟逃生路线。",
+                Content = "选择一定数量防火门，创建 模拟逃生路线。",
             };
             SetRibbonItemToolTip(cpwPlus, cpwtoolTip);
             #endregion
