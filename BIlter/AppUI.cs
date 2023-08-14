@@ -3,6 +3,7 @@ using Autodesk.Windows;
 using BIlter.Extension.Extensions;
 using BIlter.Toolkit.Mvvm.Interfaces;
 using System.Reflection;
+using System.Windows.Controls;
 
 namespace BIlter
 {
@@ -21,6 +22,9 @@ namespace BIlter
             _uiProvider.GetUIApplication().CreateRibbonTab(_tab);
 
             Autodesk.Revit.UI.RibbonPanel panelFamily = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "项目资源管理");
+            Autodesk.Revit.UI.RibbonPanel panelAArch = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "建筑功能");
+            Autodesk.Revit.UI.RibbonPanel panelData = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "数据交互");
+            Autodesk.Revit.UI.RibbonPanel panelMEP = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "机电功能");
 
             #region MM 材质管理
             var buttomMM = new PushButtonData("Material Manager", "材质管理器", typeof(App).Assembly.Location, "BIlter.Commands.MaterialsCommand");
@@ -36,7 +40,6 @@ namespace BIlter
                 ExpandedVideo = new Uri("C:\\Program Files\\Autodesk\\Revit 2023\\videos\\tooltip.mp4"),
             };
             SetRibbonItemToolTip(buttomMMPlus, toolTip);
-
             #endregion
 
             #region BIMObject
@@ -50,11 +53,51 @@ namespace BIlter
                 Title = "打开BIMObject网页",
                 Content = "公开免费族库网站BIMObject",
                 ExpandedContent = "BIMObject.com is a global marketplace for the construction industry. We provide design inspiration and digital product information to the world's architects and engineers while giving building product manufacturers a better way to reach, influence, and understand them.",
-                ExpandedVideo = new Uri("C:\\Program Files\\Autodesk\\Revit 2023\\videos\\tooltip.mp4"),
+
             };
             SetRibbonItemToolTip(bimobPlus, bimobtoolTip);
-
             #endregion
+
+            #region 2.建筑功能>判断点所在房间
+            var roombypoint = new PushButtonData("roombypoint", "判断点所在房间", typeof(App).Assembly.Location, "BIlter.Commands.FirePathCommand");
+            var roombypointPlus = panelAArch.AddItem(roombypoint) as PushButton;
+            roombypointPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
+            roombypointPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
+            RibbonToolTip roombypointbimobtoolTip = new RibbonToolTip()
+            {
+                Title = "GetRoomByPoint",
+                Content = "根据点获取房间",
+            };
+            SetRibbonItemToolTip(roombypointPlus, roombypointbimobtoolTip);
+            #endregion
+
+            #region 2.建筑功能>创建路径网
+            var cpw = new PushButtonData("CreatePathWeb", "创建路径网", typeof(App).Assembly.Location, "BIlter.Commands.CreatePathWeb");
+            var cpwPlus = panelAArch.AddItem(cpw) as PushButton;
+            cpwPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
+            cpwPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
+            RibbonToolTip cpwtoolTip = new RibbonToolTip()
+            {
+                Title = "CreatePathWeb",
+                Content = "选择一定数量防火门，创建模拟逃生路线。",
+            };
+            SetRibbonItemToolTip(cpwPlus, cpwtoolTip);
+            #endregion
+
+            #region 2.建筑功能>清理路网
+            var cpww = new PushButtonData("CleanPathWeb", "清理路网", typeof(App).Assembly.Location, "BIlter.Commands.CleanPathWeb");
+            var cpwwPlus = panelAArch.AddItem(cpww) as PushButton;
+            cpwwPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
+            cpwwPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
+            RibbonToolTip cpwwtoolTip = new RibbonToolTip()
+            {
+                Title = "CleanPathWeb",
+                Content = "基于模拟逃生路网，清除多余路径，显示防火分区。",
+            };
+            SetRibbonItemToolTip(cpwwPlus, cpwwtoolTip);
+            #endregion
+
+
 
 
 

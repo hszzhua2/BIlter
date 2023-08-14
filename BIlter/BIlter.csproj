@@ -89,6 +89,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Functions\glTFExporter\" />
         <Folder Include="Resources\TooltipVideos\" />
         <Folder Include="Resources\TooltipImages\" />
         <Folder Include="ViewModels\Converters\" />
