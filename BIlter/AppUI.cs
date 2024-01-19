@@ -17,87 +17,42 @@ namespace BIlter
         }
         public Result Initial()
         {
-            const string _tab = "BIlter";
+            const string _tab = "BIlter防火通规辅助工具";
 
             _uiProvider.GetUIApplication().CreateRibbonTab(_tab);
 
-            Autodesk.Revit.UI.RibbonPanel panelFamily = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "项目资源管理");
-            Autodesk.Revit.UI.RibbonPanel panelAArch = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "建筑功能");
-            Autodesk.Revit.UI.RibbonPanel panelData = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "数据交互");
-            Autodesk.Revit.UI.RibbonPanel panelMEP = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "机电功能");
+            Autodesk.Revit.UI.RibbonPanel panelAArch = _uiProvider.GetUIApplication().CreateRibbonPanel(_tab, "疏散距离审查工具");
 
-            #region MM 材质管理
-            var buttomMM = new PushButtonData("Material Manager", "材质管理器", typeof(App).Assembly.Location, "BIlter.Commands.MaterialsCommand");
-
-            var buttomMMPlus = panelFamily.AddItem(buttomMM) as PushButton;
-            buttomMMPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
-            buttomMMPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
-            RibbonToolTip toolTip = new RibbonToolTip()
-            {
-                Title = "Material Manager",
-                Content = "A manager for materials editing, creating, deleting, importing and exporting.",
-                ExpandedContent = "A manager for materials editing, creating, deleting, importing and exporting. The color editor and creator are support and it is only supported to edit appearance color.",
-                ExpandedVideo = new Uri("C:\\Program Files\\Autodesk\\Revit 2023\\videos\\tooltip.mp4"),
-            };
-            SetRibbonItemToolTip(buttomMMPlus, toolTip);
-            #endregion
-
-            #region BIMObject
-            var bimob = new PushButtonData("BIMObject", "BIMObject", typeof(App).Assembly.Location, "BIlter.Commands.OpenURLCommand");
-
-            var bimobPlus = panelFamily.AddItem(bimob) as PushButton;
-            bimobPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
-            bimobPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
-            RibbonToolTip bimobtoolTip = new RibbonToolTip()
-            {
-                Title = "打开BIMObject网页",
-                Content = "公开免费族库网站BIMObject",
-                ExpandedContent = "BIMObject.com is a global marketplace for the construction industry. We provide design inspiration and digital product information to the world's architects and engineers while giving building product manufacturers a better way to reach, influence, and understand them.",
-
-            };
-            SetRibbonItemToolTip(bimobPlus, bimobtoolTip);
-            #endregion
-
-            #region 2.建筑功能>判断点所在房间
-            var roombypoint = new PushButtonData("roombypoint", "判断点所在房间", typeof(App).Assembly.Location, "BIlter.Commands.FirePathCommand");
-            var roombypointPlus = panelAArch.AddItem(roombypoint) as PushButton;
-            roombypointPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
-            roombypointPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
-            RibbonToolTip roombypointbimobtoolTip = new RibbonToolTip()
-            {
-                Title = "GetRoomByPoint",
-                Content = "根据点获取房间",
-            };
-            SetRibbonItemToolTip(roombypointPlus, roombypointbimobtoolTip);
-            #endregion
-
+           
             #region 2.建筑功能>创建路径网
-            var cpw = new PushButtonData("CreatePathWeb", "创建路径网", typeof(App).Assembly.Location, "BIlter.Commands.CreatePathWeb");
+            var cpw = new PushButtonData("CreatePathWeb", "创建路径网", typeof(App).Assembly.Location, "BIlter.Commands.CreatePathWebNew");
             var cpwPlus = panelAArch.AddItem(cpw) as PushButton;
-            cpwPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
             cpwPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
             RibbonToolTip cpwtoolTip = new RibbonToolTip()
             {
-                Title = "CreatePathWeb",
-                Content = "选择一定数量防火门，创建 模拟逃生路线。",
+                Title = "选择防火门（逃生出口）并且创建路径：",
+                Content = "选择一定数量防火门（逃生出口），点击完成，创建各个门到防火门的距离" +
+                "" +
+                "房间内部疏散距离要求单独检查，参照《GB 55037-2022》" +
+                "解释权归有关单位所有",
             };
             SetRibbonItemToolTip(cpwPlus, cpwtoolTip);
-            #endregion
+            #endregion PathCommand
 
-            #region 2.建筑功能>清理路网
-            var cpww = new PushButtonData("CleanPathWeb", "清理路网", typeof(App).Assembly.Location, "BIlter.Commands.CleanPathWeb");
-            var cpwwPlus = panelAArch.AddItem(cpww) as PushButton;
-            cpwwPlus.SetImage("/BIlter;component/Resources/Icons/RibbonIcon16.png");
-            cpwwPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
-            RibbonToolTip cpwwtoolTip = new RibbonToolTip()
+            #region 2.建筑功能>创建路径网
+            var cpew = new PushButtonData("CreatePathWebe", "路径检查器", typeof(App).Assembly.Location, "BIlter.Commands.PathCommand");
+            var cpewPlus = panelAArch.AddItem(cpew) as PushButton;
+            cpewPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
+            RibbonToolTip cpewtoolTip = new RibbonToolTip()
             {
-                Title = "CleanPathWeb",
-                Content = "基于模拟逃生路网，清除多余路径，显示防火分区。",
+                Title = "路径检查器：",
+                Content = "根据已经生成的路径网，挑选出对于每个防火门（或逃生出口）的最长和最短通道" +
+                "本插件仅提供可选及删除功能" +
+                "房间内部疏散距离要求单独检查，参照《GB 55037-2022》" +
+                "解释权归有关单位所有",
             };
-            SetRibbonItemToolTip(cpwwPlus, cpwwtoolTip);
-            #endregion
-
-
+            SetRibbonItemToolTip(cpewPlus, cpewtoolTip);
+            #endregion 
 
 
 

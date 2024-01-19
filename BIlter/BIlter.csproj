@@ -54,8 +54,9 @@
     <PropertyGroup>
         <StartAction>Program</StartAction>
         <StartProgram>C:\Program Files\Autodesk\Revit $(RevitVersion)\Revit.exe</StartProgram>
-        <StartArguments>/language ENG</StartArguments>
+        <StartArguments>/language CHS</StartArguments>
     </PropertyGroup>
+	
     <ItemGroup>
       <None Remove="Resources\Icons\Windows16.png" />
       <None Remove="Resources\Icons\Windows32.png" />
@@ -68,6 +69,7 @@
         <PackageReference Include="Nice3point.Revit.Extensions" Version="$(RevitVersion).*" />
         <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*-*" />
         <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitVersion).*-*" />
+        <PackageReference Include="NPOI" Version="2.6.2" />
         <PackageReference Include="Serilog" Version="2.*" />
         <PackageReference Include="Serilog.Sinks.Debug" Version="2.*" />
         <PackageReference Include="System.Resources.Extensions" Version="4.6.0" />

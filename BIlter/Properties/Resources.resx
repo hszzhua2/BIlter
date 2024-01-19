@@ -130,6 +130,12 @@
   <data name="Family32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\Family32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FireExit16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\FireExit16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FireExit32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\FireExit32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Icon32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\Icon32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,6 +144,12 @@
   </data>
   <data name="layer32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\layer32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Levels_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Levels_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Levels_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\Levels_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RibbonIcon16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\RibbonIcon16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

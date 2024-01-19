@@ -118,8 +118,7 @@ namespace BIlter.Extension.Extensions
             return ParameterFilterElement.Create(document, name, ids, elementParameterFilter);
 #endif
         }
- 
+
     }
 
 }
-

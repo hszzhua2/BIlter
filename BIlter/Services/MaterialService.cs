@@ -84,5 +84,15 @@ namespace BIlter.Services
         {
             throw new NotImplementedException();
         }
+
+        void IDataService<BOX_Material>.ZoomToElement(BOX_Material elements)
+        {
+            throw new NotImplementedException();
+        }
+
+        BOX_Material IDataService<BOX_Material>.CreateLevel(double elevation)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

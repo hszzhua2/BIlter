@@ -103,6 +103,26 @@ namespace BIlter.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap FireExit16 {
+            get {
+                object obj = ResourceManager.GetObject("FireExit16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap FireExit32 {
+            get {
+                object obj = ResourceManager.GetObject("FireExit32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Icon32 {
             get {
                 object obj = ResourceManager.GetObject("Icon32", resourceCulture);
@@ -126,6 +146,26 @@ namespace BIlter.Properties {
         internal static System.Drawing.Bitmap layer32 {
             get {
                 object obj = ResourceManager.GetObject("layer32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Levels_16 {
+            get {
+                object obj = ResourceManager.GetObject("Levels_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Levels_32 {
+            get {
+                object obj = ResourceManager.GetObject("Levels_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
