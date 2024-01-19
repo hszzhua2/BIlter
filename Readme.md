@@ -24,4 +24,4 @@ Nice3point/RevitTemplates is supported to packaged for installed which means you
 
 # Furthur more
 
-You could devlop your own customized tools base on similar Pattern like MvvmTool/Pism. BTW C# command is also available for pyrevit(know more on: https://github.com/hszzhua2/Conzta/tree/master). Hope you enjoy it!
+You could develop your own customized tools base on similar Pattern like MvvmTool/Pism. BTW C# command is also available for pyrevit(know more on: https://github.com/hszzhua2/Conzta/tree/master). Hope you enjoy it!
