@@ -13,7 +13,7 @@ These tools ara armed at better service for AEC industry people esp for Architec
 
 # How is it going?
 
-WIP
+This plugin will not be updated.
 
 # Installing
 
