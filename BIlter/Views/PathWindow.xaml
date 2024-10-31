@@ -10,7 +10,8 @@
         d:DataContext="{d:DesignInstance Type=vm:PathViewModel}"
         mc:Ignorable="d"
         Title="逃生路径检查器" Height="500" Width="700"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="/BIlter;component/Views/ippr_16.png">
     <Window.Style>
         <Style TargetType="Window">
             <Setter Property="Template">

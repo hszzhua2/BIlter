@@ -27,7 +27,7 @@ namespace BIlter
             #region 2.建筑功能>创建路径网
             var cpw = new PushButtonData("CreatePathWeb", "创建路径网", typeof(App).Assembly.Location, "BIlter.Commands.CreatePathWebNew");
             var cpwPlus = panelAArch.AddItem(cpw) as PushButton;
-            cpwPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
+            cpwPlus.SetLargeImage("/BIlter;component/Resources/Icons/Windows32.png");
             RibbonToolTip cpwtoolTip = new RibbonToolTip()
             {
                 Title = "选择防火门（逃生出口）并且创建路径：",
@@ -42,7 +42,7 @@ namespace BIlter
             #region 2.建筑功能>创建路径网
             var cpew = new PushButtonData("CreatePathWebe", "路径检查器", typeof(App).Assembly.Location, "BIlter.Commands.PathCommand");
             var cpewPlus = panelAArch.AddItem(cpew) as PushButton;
-            cpewPlus.SetLargeImage("/BIlter;component/Resources/Icons/RibbonIcon32.png");
+            cpewPlus.SetLargeImage("/BIlter;component/Resources/Icons/Windows32.png");
             RibbonToolTip cpewtoolTip = new RibbonToolTip()
             {
                 Title = "路径检查器：",
