@@ -6,6 +6,7 @@ Because of the complie problem this plugin could not use bitmap, working in prog
 
 BIlter would be a Revit add-in based on Mvvm mode through C# which could be a extracting from Briumn[ https://github.com/hszzhua2/Briumn].
 BIlter is based on Revit templates from [ https://github.com/Nice3point/RevitTemplates] whitch is compatible with multiple versions of Revit.
+At the sametime BIlter is developed based on Tuna Extension from [https://github.com/shichuyibushishiwu/Tuna.Revit.Extensions] which developed by [https://github.com/shichuyibushishiwu].
 
 # What is it for?
 
